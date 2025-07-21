@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class ExamSystem {
+
+    public static boolean login(Scanner sc) {
+        String username = "admin";
+        String password = "pass123";
+
+        System.out.print("Enter username: ");
+        String user = sc.nextLine();
+        System.out.print("Enter password: ");
+        String pass = sc.nextLine();
+
+        return user.equals(username) && pass.equals(password);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        if (login(sc)) {
+            System.out.println("\nLogin successful!\n");
+
+         
+            int score = 0;
+            String[] questions = {
+                "1. What is the capital of India?\nA. Delhi\nB. Mumbai\nC. Kolkata\nD. Chennai",
+                "2. Java is a...\nA. Database\nB. Language\nC. OS\nD. Compiler",
+                "3. Which loop checks condition after execution?\nA. for\nB. while\nC. do-while\nD. none"
+            };
+            String[] answers = {"A", "B", "C"};
+
+            for (int i = 0; i < questions.length; i++) {
+                System.out.println(questions[i]);
+                System.out.print("Your answer: ");
+                String ans = sc.nextLine();
+
+                if (ans.equalsIgnoreCase(answers[i])) {
+                    score++;
+                }
+            }
+
+           
+            System.out.println("\nYou scored: " + score + "/" + questions.length);
+            if (score == questions.length) {
+                System.out.println("Excellent! 🎉");
+            } else if (score >= 2) {
+                System.out.println("Good job! 👍");
+            } else {
+                System.out.println("Better luck next time! 💪");
+            }
+
+        } else {
+            System.out.println("\nInvalid login. Try again.");
+        }
+
+        sc.close();
+    }
+}
